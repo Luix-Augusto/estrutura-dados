@@ -1,5 +1,7 @@
 package aulas.aula1;
 
+import aulas.aula2.Contato;
+
 public class Main {
     public static void main(String[] args) throws Exception {
 
@@ -34,6 +36,8 @@ public class Main {
 
         System.out.println("Quantidade de elementos no vetor: " + vetor.tamanho());
         System.out.println("Dados no vetor: " + vetor);
+
+
 
 
 
