@@ -31,6 +31,11 @@ public class VetorObjeto {
         }
     }
 
+
+
+
+
+
     public int getTamanho() {
         return tamanho;
     }
