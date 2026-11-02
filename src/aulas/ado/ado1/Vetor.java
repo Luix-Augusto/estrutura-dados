@@ -1,4 +1,4 @@
-package aulas.ados.ado1;
+package aulas.ado.ado1;
 
 public class Vetor {
     private Object[] elementos;

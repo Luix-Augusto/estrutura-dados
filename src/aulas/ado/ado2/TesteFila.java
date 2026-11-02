@@ -1,4 +1,4 @@
-package aulas.ados.ado2;
+package aulas.ado.ado2;
 
 import java.util.Scanner;
 
