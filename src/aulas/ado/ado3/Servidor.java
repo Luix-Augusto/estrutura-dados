@@ -1,18 +1,19 @@
 package aulas.ado.ado3;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Servidor {
 
     private String hostName;
 
-    private int capacidadeMaxCpus;
+    private Integer capacidadeMaxCpus;
 
-    private int memoriaRam;
+    private Integer memoriaRam;
 
     private List<Cpu> poolCpus;
 
-    public Servidor(String hostName, int capacidadeMaxCpus, int memoriaRam) {
+    public Servidor(String hostName, Integer capacidadeMaxCpus, Integer memoriaRam) {
         this.hostName = hostName;
         this.capacidadeMaxCpus = capacidadeMaxCpus;
         this.memoriaRam = memoriaRam;
@@ -49,6 +50,17 @@ public class Servidor {
 
     public void setPoolCpus(List<Cpu> poolCpus) {
         this.poolCpus = poolCpus;
+    }
+
+    public void adicionaCpu(Cpu cpu) {
+        if (cpu.getServidor() != this) {
+            throw new IllegalArgumentException("A CPU não pertence a este servidor.");
+        }
+        if (cpu.getServidor() == this) {
+            throw new IllegalArgumentException("A CPU já pertence a este servidor.");
+        }
+        poolCpus.add(cpu);
+        cpu.setServidor(this);
     }
 
     @Override
