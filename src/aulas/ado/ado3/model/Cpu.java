@@ -1,4 +1,4 @@
-package aulas.ado.ado3;
+package aulas.ado.ado3.model;
 
 public class Cpu {
 

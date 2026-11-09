@@ -1,4 +1,4 @@
-package aulas.ado.ado3;
+package aulas.ado.ado3.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,19 +28,19 @@ public class Servidor {
         this.hostName = hostName;
     }
 
-    public int getCapacidadeMaxCpus() {
+    public Integer getCapacidadeMaxCpus() {
         return capacidadeMaxCpus;
     }
 
-    public void setCapacidadeMaxCpus(int capacidadeMaxCpus) {
+    public void setCapacidadeMaxCpus(Integer capacidadeMaxCpus) {
         this.capacidadeMaxCpus = capacidadeMaxCpus;
     }
 
-    public int getMemoriaRam() {
+    public Integer getMemoriaRam() {
         return memoriaRam;
     }
 
-    public void setMemoriaRam(int memoriaRam) {
+    public void setMemoriaRam(Integer memoriaRam) {
         this.memoriaRam = memoriaRam;
     }
 
