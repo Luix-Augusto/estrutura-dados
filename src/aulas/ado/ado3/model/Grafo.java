@@ -63,5 +63,24 @@ public class Grafo<T> {
         }
     }
 
+    public void buscaEmProfundidade(T dadoInicial){
+        Vertice<T> inicio = this.getVertice(dadoInicial);
+        if (inicio == null){
+            throw new IllegalArgumentException("O vértice inicial não existe no grafo.");
+        }
+        visitar(inicio, new ArrayList<Vertice<T>>());
+    }
+
+    private void visitar(Vertice<T> atual, ArrayList<Vertice<T>> marcados){
+        marcados.add(atual);
+        System.out.println(atual.getDado());
+        for (Aresta<T> aresta : atual.getArestasSaida()) {
+            Vertice<T> proximo = aresta.getFim();
+            if (!marcados.contains(proximo)) {
+                visitar(proximo, marcados);
+            }
+        }
+    }
+
 
 }
