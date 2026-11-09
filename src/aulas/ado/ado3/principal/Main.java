@@ -1,4 +1,4 @@
-package aulas.ado.ado3.model.principal;
+package aulas.ado.ado3.principal;
 
 public class Main {
     public static void main(String[] args) {
