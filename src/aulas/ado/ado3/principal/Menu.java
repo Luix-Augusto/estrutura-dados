@@ -14,7 +14,7 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
 
     public void exibirMenu() {
-        Integer opcao;
+        Integer opcao = -1;
 
         // Exibir o menu e ler a opção do usuário
         //Isso é um text block
@@ -26,19 +26,18 @@ public class Menu {
                 5 - Busca em profundidade
                 6 - Sair""";
 
-        System.out.println(menu);
-        opcao = scanner.nextInt();
-
         while (opcao != 6) {
 
+            System.out.println(menu);
+            opcao = scanner.nextInt();
+
             switch (opcao) {
-                case 1 -> listarCpus(Servidor servidor);
-                case 2 -> adicionarCpu(Cpu cpu, Servidor servidor);
-                case 3 -> removerCpu(Cpu cpu, Servidor servidor);
+                case 1 -> listarCpus(servidor);
+                case 2 -> adicionarCpu(cpu, servidor);
+                case 3 -> removerCpu(cpu, servidor);
                 case 4 -> buscaEmLargura();
                 case 5 -> buscaEmProfundidade();
-                default:
-                    System.out.println("Opção inválida!");
+                default -> System.out.println("Opção inválida!");
             }
         }
 
