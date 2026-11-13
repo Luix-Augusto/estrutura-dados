@@ -55,23 +55,19 @@ public class Servidor {
     }
 
     public void adicionaCpu(Cpu cpu) {
-        if (cpu.getServidor() != this) {
+      /*  if (cpu.getServidor() != this) {
             throw new IllegalArgumentException("A CPU não pertence a este servidor.");
         }
         if (cpu.getServidor() == this) {
             throw new IllegalArgumentException("A CPU já pertence a este servidor.");
-        }
+        }*/
         poolCpus.add(cpu);
         cpu.setServidor(this);
     }
 
     @Override
     public String toString() {
-        return "Servidor: " +
-                "hostName - " + hostName +
-                ", capacidade máxima de conexões - " + capacidadeMaxCpus +
-                ", armazenamento - =" + memoriaRam +
-                ", CPUs - " + poolCpus;
+        return hostName;
     }
 
 

@@ -5,15 +5,19 @@ import aulas.ado.ado3.model.Grafo;
 import aulas.ado.ado3.model.Servidor;
 
 import javax.swing.undo.AbstractUndoableEdit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
     //declaracao generia
     private Servidor servidor;
 
+    Grafo<Servidor> grafo = new Grafo<Servidor>();
+
     /*
-    * instanciando para usar os servidores
-    *  especificos em multiplos métodos*/
+     * instanciando para usar os servidores
+     *  especificos em multiplos métodos*/
     private Servidor servidor1;
     private Servidor servidor2;
     private Servidor servidor3;
@@ -47,35 +51,59 @@ public class Menu {
 
     private Cpu cpu;
 
-    private Grafo<Servidor> grafo;
 
     Scanner scanner = new Scanner(System.in);
 
     public void exibirMenu() {
         Integer opcao = -1;
 
+        String dica = """
+                ***********************\n
+                ORDEM RECOMENDADA: \n
+                1 - Criar Servidores
+                4 - Criar Grafo\n
+                Em seguida, você pode realizar buscas em largura ou profundidade.
+                ***********************\n""";
+
         // Exibir o menu e ler a opção do usuário
         //Isso é um text block
         String menu = """
-                1 - Listar CPUs
-                2 - Adicionar CPU
-                3 - Remover CPU
-                4 - Busca em largura
-                5 - Busca em profundidade
-                6 - Sair""";
+                1 - Criar servidores
+                2 - Criar grafo
+                3 - Busca em largura
+                4 - Busca em profundidade
+                5 - Listar CPUs de um servidor
+                6 - Remover CPU de um servidor
+                7 - Adicionar CPU a um servidor
+                8 - Sair""";
 
-        while (opcao != 6) {
-
+        while (opcao != 8) {
+            System.out.println(dica);
             System.out.println(menu);
             opcao = scanner.nextInt();
 
             switch (opcao) {
-                case 1 -> listarCpus(servidor);
-                case 2 -> adicionarCpu(cpu, servidor);
-                case 3 -> removerCpu(cpu, servidor);
-                case 4 -> criarGrafos();
-                case 5 -> buscaEmLargura();
-                case 6 -> buscaEmProfundidade();
+                case 1 -> criarServidores();
+                case 2 -> criarGrafos();
+                case 3 -> buscaEmLargura();
+                case 4 -> buscaEmProfundidade();
+                case 5 -> {
+                    System.out.println("Informe o servidor que deseja listar as CPUs:");
+                    String hostName = scanner.next();
+                    listarCpus(hostName);
+                }
+                case 6 -> {
+                    System.out.println("Informe o servidor que deseja remover a CPU:");
+                    String hostName = scanner.next();
+                    System.out.println("Informe o modelo da CPU que deseja remover:");
+                    String modeloCpu = scanner.next();
+                    removerCpu(cpu, servidor);
+                }
+                case 7 -> adicionarCpu(cpu, servidor);
+                case 8 -> {
+                    System.out.println("Saindo do programa...");
+                    break;
+                }
                 default -> System.out.println("Opção inválida!");
             }
         }
@@ -83,8 +111,26 @@ public class Menu {
 
     }
 
-    public void listarCpus(Servidor servidor) {
-        servidor.getPoolCpus().forEach(System.out::println);
+    public void listarCpus(String hostname) {
+        List<Servidor> servidores = new ArrayList<>();
+        servidores.add(servidor1);
+        servidores.add(servidor2);
+        servidores.add(servidor3);
+        servidores.add(servidor4);
+        servidores.add(servidor5);
+        servidores.add(servidor6);
+        servidores.add(servidor7);
+        servidores.add(servidor8);
+        servidores.add(servidor9);
+        servidores.add(servidor10);
+        servidores.add(servidor11);
+        servidores.add(servidor12);
+        servidores.add(servidor13);
+        for (int i = 0; i < servidores.size(); i++){
+            if (hostname.equalsIgnoreCase(servidores.get(i).getHostName())){
+                System.out.println(servidores.get(i).getPoolCpus());
+            }
+        }
     }
 
     public void adicionarCpu(Cpu cpu, Servidor servidor) {
@@ -109,113 +155,150 @@ public class Menu {
 
     }
 
-    public void removerCpu(Cpu cpu, Servidor servidor){
+    public void removerCpu(Cpu cpu, Servidor servidor) {
         servidor.getPoolCpus().remove(cpu);
         System.out.println("CPU removida com sucesso: " + cpu.getModelo());
     }
 
-    public void buscaEmLargura(){
+    public void buscaEmLargura() {
         grafo.buscaEmLargura();
 
     }
 
-    public void buscaEmProfundidade(){
+    public void buscaEmProfundidade() {
         grafo.buscaEmProfundidade();
     }
 
-    public void criarServidores(){
+    public void criarServidores() {
 
-        Cpu cpu1  = new Cpu("WebSphere-HML-01", 4,  2400, false);
-        Cpu cpu2  = new Cpu("WebSphere-PRD-02", 8,  3000, true);
-        Cpu cpu3  = new Cpu("WebSphere-HML-03", 4,  2600, false);
-        Cpu cpu4  = new Cpu("WebSphere-PRD-04", 8,  3200, true);
-        Cpu cpu5  = new Cpu("WebSphere-HML-05", 6,  2400, false);
-        Cpu cpu6  = new Cpu("WebSphere-PRD-06", 12, 3000, true);
-        Cpu cpu7  = new Cpu("WebSphere-HML-07", 4,  2800, false);
-        Cpu cpu8  = new Cpu("WebSphere-PRD-08", 8,  3400, true);
-        Cpu cpu9  = new Cpu("WebSphere-HML-09", 6,  2600, false);
+        Cpu cpu1 = new Cpu("WebSphere-HML-01", 4, 2400, false);
+        Cpu cpu2 = new Cpu("WebSphere-PRD-02", 8, 3000, true);
+        Cpu cpu3 = new Cpu("WebSphere-HML-03", 4, 2600, false);
+        Cpu cpu4 = new Cpu("WebSphere-PRD-04", 8, 3200, true);
+        Cpu cpu5 = new Cpu("WebSphere-HML-05", 6, 2400, false);
+        Cpu cpu6 = new Cpu("WebSphere-PRD-06", 12, 3000, true);
+        Cpu cpu7 = new Cpu("WebSphere-HML-07", 4, 2800, false);
+        Cpu cpu8 = new Cpu("WebSphere-PRD-08", 8, 3400, true);
+        Cpu cpu9 = new Cpu("WebSphere-HML-09", 6, 2600, false);
         Cpu cpu10 = new Cpu("WebSphere-PRD-10", 12, 3200, true);
-        Cpu cpu11 = new Cpu("WebSphere-HML-11", 4,  2400, false);
+        Cpu cpu11 = new Cpu("WebSphere-HML-11", 4, 2400, false);
         Cpu cpu12 = new Cpu("WebSphere-PRD-12", 16, 3000, true);
-        Cpu cpu13 = new Cpu("WebSphere-HML-13", 6,  2800, false);
-        Cpu cpu14 = new Cpu("WebSphere-PRD-14", 8,  3400, true);
-        Cpu cpu15 = new Cpu("WebSphere-HML-15", 4,  2600, false);
+        Cpu cpu13 = new Cpu("WebSphere-HML-13", 6, 2800, false);
+        Cpu cpu14 = new Cpu("WebSphere-PRD-14", 8, 3400, true);
+        Cpu cpu15 = new Cpu("WebSphere-HML-15", 4, 2600, false);
         Cpu cpu16 = new Cpu("WebSphere-PRD-16", 12, 3200, true);
-        Cpu cpu17 = new Cpu("WebSphere-HML-17", 6,  2400, false);
+        Cpu cpu17 = new Cpu("WebSphere-HML-17", 6, 2400, false);
         Cpu cpu18 = new Cpu("WebSphere-PRD-18", 16, 3000, true);
-        Cpu cpu19 = new Cpu("WebSphere-HML-19", 4,  2800, false);
-        Cpu cpu20 = new Cpu("WebSphere-PRD-20", 8,  3400, true);
-        Cpu cpu21 = new Cpu("WebSphere-HML-21", 6,  2600, false);
+        Cpu cpu19 = new Cpu("WebSphere-HML-19", 4, 2800, false);
+        Cpu cpu20 = new Cpu("WebSphere-PRD-20", 8, 3400, true);
+        Cpu cpu21 = new Cpu("WebSphere-HML-21", 6, 2600, false);
         Cpu cpu22 = new Cpu("WebSphere-PRD-22", 12, 3200, true);
-        Cpu cpu23 = new Cpu("WebSphere-HML-23", 4,  2400, false);
+        Cpu cpu23 = new Cpu("WebSphere-HML-23", 4, 2400, false);
         Cpu cpu24 = new Cpu("WebSphere-PRD-24", 16, 3000, true);
-        Cpu cpu25 = new Cpu("WebSphere-HML-25", 6,  2800, false);
-        Cpu cpu26 = new Cpu("WebSphere-PRD-26", 8,  3400, true);
-        Cpu cpu27 = new Cpu("WebSphere-HML-27", 4,  2600, false);
+        Cpu cpu25 = new Cpu("WebSphere-HML-25", 6, 2800, false);
+        Cpu cpu26 = new Cpu("WebSphere-PRD-26", 8, 3400, true);
+        Cpu cpu27 = new Cpu("WebSphere-HML-27", 4, 2600, false);
         Cpu cpu28 = new Cpu("WebSphere-PRD-28", 12, 3200, true);
-        Cpu cpu29 = new Cpu("WebSphere-HML-29", 6,  2400, false);
+        Cpu cpu29 = new Cpu("WebSphere-HML-29", 6, 2400, false);
         Cpu cpu30 = new Cpu("WebSphere-PRD-30", 16, 3000, true);
 
 
-        servidor1 = new Servidor("Servi0101-prd", 16,  true);
+        servidor1 = new Servidor("Servi0101-prd", 16, true);
         servidor1.adicionaCpu(cpu2);
         servidor1.adicionaCpu(cpu4);
         servidor1.adicionaCpu(cpu6);
+        cpu2.setServidor(servidor1);
+        cpu4.setServidor(servidor1);
+        cpu6.setServidor(servidor1);
 
-        servidor2 = new Servidor("Servi0102-prd", 16,  true);
+        servidor1 = new Servidor("Servi0101-prd", 16, true);
+        servidor1.adicionaCpu(cpu2);
+        servidor1.adicionaCpu(cpu4);
+        servidor1.adicionaCpu(cpu6);
+        cpu2.setServidor(servidor1);
+        cpu4.setServidor(servidor1);
+        cpu6.setServidor(servidor1);
+
+        servidor2 = new Servidor("Servi0102-prd", 16, true);
         servidor2.adicionaCpu(cpu8);
         servidor2.adicionaCpu(cpu10);
         servidor2.adicionaCpu(cpu12);
+        cpu8.setServidor(servidor2);
+        cpu10.setServidor(servidor2);
+        cpu12.setServidor(servidor2);
 
-        servidor3 = new Servidor("Servi0103-prd", 16,  true);
+        servidor3 = new Servidor("Servi0103-prd", 16, true);
         servidor3.adicionaCpu(cpu14);
         servidor3.adicionaCpu(cpu16);
         servidor3.adicionaCpu(cpu18);
+        cpu14.setServidor(servidor3);
+        cpu16.setServidor(servidor3);
+        cpu18.setServidor(servidor3);
 
-        servidor4 = new Servidor("Servi0104-prd", 16,  true);
+        servidor4 = new Servidor("Servi0104-prd", 16, true);
         servidor4.adicionaCpu(cpu20);
         servidor4.adicionaCpu(cpu22);
         servidor4.adicionaCpu(cpu24);
+        cpu20.setServidor(servidor4);
+        cpu22.setServidor(servidor4);
+        cpu24.setServidor(servidor4);
 
-        servidor5 = new Servidor("Servi0105-prd", 16,  true);
+        servidor5 = new Servidor("Servi0105-prd", 16, true);
         servidor5.adicionaCpu(cpu26);
         servidor5.adicionaCpu(cpu28);
         servidor5.adicionaCpu(cpu30);
+        cpu26.setServidor(servidor5);
+        cpu28.setServidor(servidor5);
+        cpu30.setServidor(servidor5);
 
-        servidor6 = new Servidor("Servi0106-hml", 16,  false);
+        servidor6 = new Servidor("Servi0106-hml", 16, false);
         servidor6.adicionaCpu(cpu1);
         servidor6.adicionaCpu(cpu3);
         servidor6.adicionaCpu(cpu5);
+        cpu1.setServidor(servidor6);
+        cpu3.setServidor(servidor6);
+        cpu5.setServidor(servidor6);
 
-        servidor7 = new Servidor("Servi0107-hml", 16,  false);
+        servidor7 = new Servidor("Servi0107-hml", 16, false);
         servidor7.adicionaCpu(cpu7);
         servidor7.adicionaCpu(cpu9);
         servidor7.adicionaCpu(cpu11);
+        cpu7.setServidor(servidor7);
+        cpu9.setServidor(servidor7);
+        cpu11.setServidor(servidor7);
 
-        servidor8 = new Servidor("Servi0108-hml", 16,  false);
+        servidor8 = new Servidor("Servi0108-hml", 16, false);
         servidor8.adicionaCpu(cpu13);
         servidor8.adicionaCpu(cpu15);
         servidor8.adicionaCpu(cpu17);
+        cpu13.setServidor(servidor8);
+        cpu15.setServidor(servidor8);
+        cpu17.setServidor(servidor8);
 
-        servidor9 = new Servidor("Servi0109-hml", 16,  false);
+        servidor9 = new Servidor("Servi0109-hml", 16, false);
         servidor9.adicionaCpu(cpu19);
         servidor9.adicionaCpu(cpu21);
         servidor9.adicionaCpu(cpu23);
+        cpu19.setServidor(servidor9);
+        cpu21.setServidor(servidor9);
+        cpu23.setServidor(servidor9);
 
-        servidor10 = new Servidor("Servi01010-hml", 16,  false);
+        servidor10 = new Servidor("Servi01010-hml", 16, false);
         servidor10.adicionaCpu(cpu25);
         servidor10.adicionaCpu(cpu27);
         servidor10.adicionaCpu(cpu29);
+        cpu25.setServidor(servidor10);
+        cpu27.setServidor(servidor10);
+        cpu29.setServidor(servidor10);
 
-        servidor11 = new Servidor("Servi01011-hml", 16,  false);
-        servidor12 = new Servidor("Servi01012-hml", 16,  false);
-        servidor13 = new Servidor("Servi01013-hml", 16,  false);
+        servidor11 = new Servidor("Servi01011-hml", 16, false);
+        servidor12 = new Servidor("Servi01012-hml", 16, false);
+        servidor13 = new Servidor("Servi01013-hml", 16, false);
 
         System.out.println("Servidores e CPUs criados com sucesso!");
     }
 
-    public void criarGrafos(){
-        criarServidores();
+    public void criarGrafos() {
 
         grafo.adicionarVertice(servidor1);
         grafo.adicionarVertice(servidor2);
@@ -233,17 +316,17 @@ public class Menu {
 
 
         grafo.adicionarAresta(12, servidor1, servidor4);
-        grafo.adicionarAresta(4,servidor4, servidor2);
-        grafo.adicionarAresta(1,servidor2, servidor3);
-        grafo.adicionarAresta(8,servidor3, servidor5);
+        grafo.adicionarAresta(4, servidor4, servidor2);
+        grafo.adicionarAresta(1, servidor2, servidor3);
+        grafo.adicionarAresta(8, servidor3, servidor5);
         grafo.adicionarAresta(16, servidor5, servidor6);
-        grafo.adicionarAresta(5,servidor6, servidor7);
-        grafo.adicionarAresta(6,servidor7, servidor8);
-        grafo.adicionarAresta(4,servidor8, servidor9);
-        grafo.adicionarAresta(6,servidor9, servidor10);
-        grafo.adicionarAresta(1,servidor10, servidor11);
-        grafo.adicionarAresta(0,servidor11, servidor12);
-        grafo.adicionarAresta(1,servidor12, servidor13);
+        grafo.adicionarAresta(5, servidor6, servidor7);
+        grafo.adicionarAresta(6, servidor7, servidor8);
+        grafo.adicionarAresta(4, servidor8, servidor9);
+        grafo.adicionarAresta(6, servidor9, servidor10);
+        grafo.adicionarAresta(1, servidor10, servidor11);
+        grafo.adicionarAresta(0, servidor11, servidor12);
+        grafo.adicionarAresta(1, servidor12, servidor13);
 
         System.out.println("Grafo criado com sucesso!");
 

@@ -1,7 +1,7 @@
 package aulas.ado.ado3.model;
 
 public class Aresta<T> {
-    private Double peso;
+    private Integer peso;
 
     private Vertice<T> inicio;
 
@@ -13,11 +13,11 @@ public class Aresta<T> {
         this.fim = fim;
     }
 
-    public Double getPeso() {
+    public Integer getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(Integer peso) {
         this.peso = peso;
     }
 

@@ -55,12 +55,12 @@ public class Cpu {
         this.servidor = servidor;
     }
 
-    @Override
+/*    @Override
     public String toString() {
         return "CPU: " +
                 "modelo - " + modelo +
                 ", nucleos - " + nucleos +
                 ", frequencia - " + frequencia +
                 ", servidor - " + servidor;
-    }
+    }*/
 }
