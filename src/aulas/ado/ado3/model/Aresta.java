@@ -7,7 +7,7 @@ public class Aresta<T> {
 
     private Vertice<T> fim;
 
-    public Aresta(Double peso, Vertice<T> inicio, Vertice<T> fim) {
+    public Aresta(Integer peso, Vertice<T> inicio, Vertice<T> fim) {
         this.peso = peso;
         this.inicio = inicio;
         this.fim = fim;

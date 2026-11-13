@@ -1,15 +1,53 @@
 package aulas.ado.ado3.principal;
 
 import aulas.ado.ado3.model.Cpu;
+import aulas.ado.ado3.model.Grafo;
 import aulas.ado.ado3.model.Servidor;
 
 import javax.swing.undo.AbstractUndoableEdit;
 import java.util.Scanner;
 
 public class Menu {
+    //declaracao generia
     private Servidor servidor;
 
+    /*
+    * instanciando para usar os servidores
+    *  especificos em multiplos métodos*/
+    private Servidor servidor1;
+    private Servidor servidor2;
+    private Servidor servidor3;
+    private Servidor servidor4;
+    private Servidor servidor5;
+    private Servidor servidor6;
+    private Servidor servidor7;
+    private Servidor servidor8;
+    private Servidor servidor9;
+    private Servidor servidor10;
+    private Servidor servidor11;
+    private Servidor servidor12;
+    private Servidor servidor13;
+    private Servidor servidor14;
+    private Servidor servidor15;
+    private Servidor servidor16;
+    private Servidor servidor17;
+    private Servidor servidor18;
+    private Servidor servidor19;
+    private Servidor servidor20;
+    private Servidor servidor21;
+    private Servidor servidor22;
+    private Servidor servidor23;
+    private Servidor servidor24;
+    private Servidor servidor25;
+    private Servidor servidor26;
+    private Servidor servidor27;
+    private Servidor servidor28;
+    private Servidor servidor29;
+    private Servidor servidor30;
+
     private Cpu cpu;
+
+    private Grafo<Servidor> grafo;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -35,8 +73,9 @@ public class Menu {
                 case 1 -> listarCpus(servidor);
                 case 2 -> adicionarCpu(cpu, servidor);
                 case 3 -> removerCpu(cpu, servidor);
-                case 4 -> buscaEmLargura();
-                case 5 -> buscaEmProfundidade();
+                case 4 -> criarGrafos();
+                case 5 -> buscaEmLargura();
+                case 6 -> buscaEmProfundidade();
                 default -> System.out.println("Opção inválida!");
             }
         }
@@ -76,11 +115,12 @@ public class Menu {
     }
 
     public void buscaEmLargura(){
+        grafo.buscaEmLargura();
 
     }
 
     public void buscaEmProfundidade(){
-
+        grafo.buscaEmProfundidade();
     }
 
     public void criarServidores(){
@@ -117,59 +157,95 @@ public class Menu {
         Cpu cpu30 = new Cpu("WebSphere-PRD-30", 16, 3000, true);
 
 
-        Servidor servidor1 = new Servidor("Servi0101-prd", 16,  true);
+        servidor1 = new Servidor("Servi0101-prd", 16,  true);
         servidor1.adicionaCpu(cpu2);
         servidor1.adicionaCpu(cpu4);
         servidor1.adicionaCpu(cpu6);
 
-        Servidor servidor2 = new Servidor("Servi0102-prd", 16,  true);
+        servidor2 = new Servidor("Servi0102-prd", 16,  true);
         servidor2.adicionaCpu(cpu8);
         servidor2.adicionaCpu(cpu10);
         servidor2.adicionaCpu(cpu12);
 
-        Servidor servidor3 = new Servidor("Servi0103-prd", 16,  true);
+        servidor3 = new Servidor("Servi0103-prd", 16,  true);
         servidor3.adicionaCpu(cpu14);
         servidor3.adicionaCpu(cpu16);
         servidor3.adicionaCpu(cpu18);
 
-        Servidor servidor4 = new Servidor("Servi0104-prd", 16,  true);
+        servidor4 = new Servidor("Servi0104-prd", 16,  true);
         servidor4.adicionaCpu(cpu20);
         servidor4.adicionaCpu(cpu22);
         servidor4.adicionaCpu(cpu24);
 
-        Servidor servidor5 = new Servidor("Servi0105-prd", 16,  true);
+        servidor5 = new Servidor("Servi0105-prd", 16,  true);
         servidor5.adicionaCpu(cpu26);
         servidor5.adicionaCpu(cpu28);
         servidor5.adicionaCpu(cpu30);
 
-        Servidor servidor6 = new Servidor("Servi0106-hml", 16,  false);
+        servidor6 = new Servidor("Servi0106-hml", 16,  false);
         servidor6.adicionaCpu(cpu1);
         servidor6.adicionaCpu(cpu3);
         servidor6.adicionaCpu(cpu5);
 
-        Servidor servidor7 = new Servidor("Servi0107-hml", 16,  false);
+        servidor7 = new Servidor("Servi0107-hml", 16,  false);
         servidor7.adicionaCpu(cpu7);
         servidor7.adicionaCpu(cpu9);
         servidor7.adicionaCpu(cpu11);
 
-        Servidor servidor8 = new Servidor("Servi0108-hml", 16,  false);
+        servidor8 = new Servidor("Servi0108-hml", 16,  false);
         servidor8.adicionaCpu(cpu13);
         servidor8.adicionaCpu(cpu15);
         servidor8.adicionaCpu(cpu17);
 
-        Servidor servidor9 = new Servidor("Servi0109-hml", 16,  false);
+        servidor9 = new Servidor("Servi0109-hml", 16,  false);
         servidor9.adicionaCpu(cpu19);
         servidor9.adicionaCpu(cpu21);
         servidor9.adicionaCpu(cpu23);
 
-        Servidor servidor10 = new Servidor("Servi01010-hml", 16,  false);
+        servidor10 = new Servidor("Servi01010-hml", 16,  false);
         servidor10.adicionaCpu(cpu25);
         servidor10.adicionaCpu(cpu27);
         servidor10.adicionaCpu(cpu29);
 
-        Servidor servidor11 = new Servidor("Servi01011-hml", 16,  false);
-        Servidor servidor12 = new Servidor("Servi01012-hml", 16,  false);
-        Servidor servidor13 = new Servidor("Servi01013-hml", 16,  false);
+        servidor11 = new Servidor("Servi01011-hml", 16,  false);
+        servidor12 = new Servidor("Servi01012-hml", 16,  false);
+        servidor13 = new Servidor("Servi01013-hml", 16,  false);
+
+        System.out.println("Servidores e CPUs criados com sucesso!");
+    }
+
+    public void criarGrafos(){
+        criarServidores();
+
+        grafo.adicionarVertice(servidor1);
+        grafo.adicionarVertice(servidor2);
+        grafo.adicionarVertice(servidor3);
+        grafo.adicionarVertice(servidor4);
+        grafo.adicionarVertice(servidor5);
+        grafo.adicionarVertice(servidor6);
+        grafo.adicionarVertice(servidor7);
+        grafo.adicionarVertice(servidor8);
+        grafo.adicionarVertice(servidor9);
+        grafo.adicionarVertice(servidor10);
+        grafo.adicionarVertice(servidor11);
+        grafo.adicionarVertice(servidor12);
+        grafo.adicionarVertice(servidor13);
+
+
+        grafo.adicionarAresta(12, servidor1, servidor4);
+        grafo.adicionarAresta(4,servidor4, servidor2);
+        grafo.adicionarAresta(1,servidor2, servidor3);
+        grafo.adicionarAresta(8,servidor3, servidor5);
+        grafo.adicionarAresta(16, servidor5, servidor6);
+        grafo.adicionarAresta(5,servidor6, servidor7);
+        grafo.adicionarAresta(6,servidor7, servidor8);
+        grafo.adicionarAresta(4,servidor8, servidor9);
+        grafo.adicionarAresta(6,servidor9, servidor10);
+        grafo.adicionarAresta(1,servidor10, servidor11);
+        grafo.adicionarAresta(0,servidor11, servidor12);
+        grafo.adicionarAresta(1,servidor12, servidor13);
+
+        System.out.println("Grafo criado com sucesso!");
 
     }
 

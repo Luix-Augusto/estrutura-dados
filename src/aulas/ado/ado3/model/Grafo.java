@@ -17,7 +17,7 @@ public class Grafo<T> {
         this.vertices.add(novoVertice);
     }
 
-    public void adicionarAresta(Double peso, T dadoInicio, T dadoFim) {
+    public void adicionarAresta(Integer peso, T dadoInicio, T dadoFim) {
         Vertice<T> inicio = this.getVertice(dadoInicio);
         Vertice<T> fim = this.getVertice(dadoFim);
         Aresta<T> aresta = new Aresta<T>(peso, inicio, fim);
@@ -37,17 +37,13 @@ public class Grafo<T> {
         return vertice;
     }
 
-    public void buscaEmLargura(T dadoInicial) {
-        Vertice<T> inicio = this.getVertice(dadoInicial);
-        if (inicio == null) {
-            throw new IllegalArgumentException("O vértice inicial não existe no grafo.");
-        }
+    public void buscaEmLargura() {
+
 
         ArrayList<Vertice<T>> marcados = new ArrayList<>();
         ArrayList<Vertice<T>> fila = new ArrayList<>();
 
-        marcados.add(inicio);
-        fila.add(inicio);
+
 
         while (!fila.isEmpty()) {
             Vertice<T> atual = fila.remove(0);
@@ -60,14 +56,12 @@ public class Grafo<T> {
                     System.out.println(proximo.getDado());
                 }
             }
+            fila.remove(0);
         }
     }
 
-    public void buscaEmProfundidade(T dadoInicial){
-        Vertice<T> inicio = this.getVertice(dadoInicial);
-        if (inicio == null){
-            throw new IllegalArgumentException("O vértice inicial não existe no grafo.");
-        }
+    public void buscaEmProfundidade(){
+
         visitar(inicio, new ArrayList<Vertice<T>>());
     }
 
