@@ -10,11 +10,17 @@ public class Cpu {
 
     private Servidor servidor;
 
-    public Cpu(String modelo, Integer nucleos, Integer frequencia, Servidor servidor) {
+    private Boolean prd;
+
+    public Cpu(String modelo, Integer nucleos, Integer frequencia, Boolean prd) {
         this.modelo = modelo;
         this.nucleos = nucleos;
         this.frequencia = frequencia;
-        this.servidor = servidor;
+        this.prd = prd;
+    }
+
+    public Boolean getPrd() {
+        return prd;
     }
 
     public String getModelo() {

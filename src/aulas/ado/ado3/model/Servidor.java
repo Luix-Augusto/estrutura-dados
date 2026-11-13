@@ -13,10 +13,12 @@ public class Servidor {
 
     private List<Cpu> poolCpus;
 
-    public Servidor(String hostName, Integer capacidadeMaxCpus, Integer memoriaRam) {
+    private Boolean prd;
+
+    public Servidor(String hostName, Integer memoriaRam, Boolean prd) {
         this.hostName = hostName;
-        this.capacidadeMaxCpus = capacidadeMaxCpus;
         this.memoriaRam = memoriaRam;
+        this.prd = prd;
         this.poolCpus = new ArrayList<>();
     }
 
