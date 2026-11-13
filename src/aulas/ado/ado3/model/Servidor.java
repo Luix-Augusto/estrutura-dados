@@ -54,6 +54,8 @@ public class Servidor {
         this.poolCpus = poolCpus;
     }
 
+
+    //validar
     public void adicionaCpu(Cpu cpu) {
       /*  if (cpu.getServidor() != this) {
             throw new IllegalArgumentException("A CPU não pertence a este servidor.");

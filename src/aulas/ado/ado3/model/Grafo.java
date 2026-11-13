@@ -22,8 +22,8 @@ public class Grafo<T> {
         Vertice<T> inicio = this.getVertice(dadoInicio);
         Vertice<T> fim = this.getVertice(dadoFim);
         Aresta<T> aresta = new Aresta<T>(peso, inicio, fim);
-        fim.adicionarArestaSaida(aresta);
-        inicio.adicionarArestaEntrada(aresta);
+        inicio.adicionarArestaSaida(aresta);
+        fim.adicionarArestaEntrada(aresta);
         this.arestas.add(aresta);
     }
 
@@ -96,6 +96,7 @@ public class Grafo<T> {
 
     }
 
+    //Validar se faz sentido
     private void visitar(Vertice<T> atual, ArrayList<Vertice<T>> marcados) {
         marcados.add(atual);
         System.out.println(atual.getDado());
