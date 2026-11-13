@@ -105,9 +105,8 @@ public class Menu {
                 }
                 case 7 -> {
                     System.out.println("Informe a CPU e o Servidor para ser inserido");
-                    String modeloCpu = scanner.nextLine();
                     String hostName = scanner.nextLine();
-                    adicionarCpu(modeloCpu, hostName);
+                    adicionarCpu(hostName);
                 }
                 case 8 -> {
                     System.out.println("Saindo do programa...");
