@@ -57,14 +57,16 @@ public class Servidor {
 
     //validar
     public void adicionaCpu(Cpu cpu) {
+
+        cpu.setServidor(this);
+        poolCpus.add(cpu);
+
       /*  if (cpu.getServidor() != this) {
             throw new IllegalArgumentException("A CPU não pertence a este servidor.");
         }
         if (cpu.getServidor() == this) {
             throw new IllegalArgumentException("A CPU já pertence a este servidor.");
         }*/
-        poolCpus.add(cpu);
-        cpu.setServidor(this);
     }
 
     @Override

@@ -149,15 +149,28 @@ public class Menu {
         }
     }
 
-    public void adicionarCpu(String cpu, String servidor) {
-        /*Quando é utilizado o + para concatenar Strings,
-        o Java cria um novo objeto String a cada concatenação,
-        o que pode ser ineficiente em termos de desempenho,
-         especialmente em loops ou quando há muitas concatenações.
-          O StringBuilder é uma classe projetada para criar e manipular Strings de forma mais eficiente,
-           permitindo a modificação do conteúdo sem criar novos objetos String a cada operação*/
+    public void adicionarCpu(String servidor) {
+        try {
 
-        //WIP - work in progres
+            String hostProcurado = servidor;
+
+            //stream API
+            Servidor hostAchado = servidores.stream()
+                    .filter(s -> s.getHostName() != null && s.getHostName().equalsIgnoreCase(hostProcurado))
+                    .findFirst()
+                    .orElse(null);
+
+            if (hostAchado != null) {
+                System.out.println("Informe o nome da sua CPU, será criada uma com configurações default em ambiente de homologação,");
+                String nomeCpu = scanner.nextLine();
+                Cpu cpuUsuario = new Cpu(nomeCpu, 16, 5, false);
+                hostAchado.adicionaCpu(cpuUsuario);
+                System.out.println("CPU criada e adicionada ao servidor informado");
+            }
+        } catch (Exception e) {
+            System.out.println("ERRO - tente novamente");
+
+        }
     }
 
     public void removerCpu(String hostname, String cpu) {
