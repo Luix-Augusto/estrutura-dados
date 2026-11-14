@@ -91,12 +91,13 @@ public class Menu {
                 case 3 -> buscaEmLargura();
                 case 4 -> buscaEmProfundidade();
                 case 5 -> {
-                    System.out.println("Informe o servidor que deseja listar as CPUs:");
                     scanner.nextLine();
+                    System.out.println("Informe o servidor que deseja listar as CPUs:");
                     String hostName = scanner.nextLine();
                     listarCpus(hostName);
                 }
                 case 6 -> {
+                    scanner.nextLine();
                     System.out.println("Informe o servidor que deseja remover a CPU:");
                     String hostName = scanner.nextLine();
                     System.out.println("Informe o modelo da CPU que deseja remover:");
@@ -104,6 +105,7 @@ public class Menu {
                     removerCpu(hostName, modeloCpu);
                 }
                 case 7 -> {
+                    scanner.nextLine();
                     System.out.println("Informe a CPU e o Servidor para ser inserido");
                     String hostName = scanner.nextLine();
                     adicionarCpu(hostName);
